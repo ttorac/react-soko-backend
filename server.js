@@ -1,9 +1,9 @@
-const PORT = 5000
+const {app_host, app_port, db_host} = require('./config')
 
 const express = require('express')
 const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
 const cors = require('cors')
+const bodyParser = require('body-parser')
 
 const app = express()
 
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 app.use(cors())
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/sokoban', {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(`mongodb://${db_host}`, {useNewUrlParser: true, useUnifiedTopology: true})
 const conn =  mongoose.connection
 
 conn.once('open', function () {
@@ -77,7 +77,4 @@ app.post('/pass', async (req, res) => {
 
 }) 
 
-
-
-
-app.listen(PORT, () => console.log(`Listening at http://127.0.0.1:${PORT}`))
+app.listen(PORT, () => console.log(`Listening at http://${app_host}:${app_port}`))
