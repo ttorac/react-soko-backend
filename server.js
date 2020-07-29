@@ -77,4 +77,4 @@ app.post('/pass', async (req, res) => {
 
 }) 
 
-app.listen(PORT, () => console.log(`Listening at http://${app_host}:${app_port}`))
+app.listen(app_port, () => console.log(`Listening at http://${app_host}:${app_port}`))
